@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>山东大学国家记忆寻访团 | 寻访历史印迹 守护国家记忆</title>
+    <!-- Font Awesome 6 (免费图标库) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: 提升字体质感 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDF9F5;
+            color: #2C2418;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 主题色：山大红 + 历史沉稳色调 */
+        :root {
+            --sdu-red: #9B2A2A;
+            --sdu-red-dark: #7A1F1F;
+            --sdu-gold: #C4A27A;
+            --sdu-light: #F4EDE4;
+            --sdu-dark: #2C2418;
+            --sdu-gray: #5E5A55;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08);
+            --transition: all 0.25s ease;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* 导航栏 (sticky) */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(253, 249, 245, 0.96);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(155, 42, 42, 0.15);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .logo a {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--sdu-red);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            font-weight: 400;
+            color: var(--sdu-gold);
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--sdu-dark);
+            transition: var(--transition);
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .nav-links li a:hover {
+            color: var(--sdu-red);
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sdu-red);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--sdu-red);
+        }
+
+        /* 响应式导航 */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background: #FFFBF8;
+                width: 80%;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 2rem 2rem;
+                gap: 2rem;
+                box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+                transition: 0.3s ease;
+                display: flex;
+                z-index: 99;
+                border-right: 1px solid #eee;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .mobile-menu-icon {
+                display: block;
+            }
+            .navbar {
+                padding: 0.9rem 0;
+            }
+            .container {
+                padding: 0 24px;
+            }
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #F4EDE4 0%, #FDF9F5 100%);
+            padding: 4rem 0 5rem 0;
+            border-bottom: 1px solid rgba(155,42,42,0.1);
+        }
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--sdu-red);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        .hero .sub {
+            font-size: 1.2rem;
+            color: var(--sdu-gray);
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+            border-top: 1px solid #DECBB5;
+            display: inline-block;
+            padding-top: 0.8rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 1.2rem auto 0;
+            color: #3F3527;
+        }
+        .btn-group {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary, .btn-outline {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: var(--sdu-red);
+            color: white;
+            border: 1px solid var(--sdu-red);
+        }
+        .btn-primary:hover {
+            background: var(--sdu-red-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(155,42,42,0.2);
+        }
+        .btn-outline {
+            border: 1px solid var(--sdu-red);
+            color: var(--sdu-red);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: var(--sdu-red);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* 通用section样式 */
+        section {
+            padding: 5rem 0;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--sdu-dark);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--sdu-red);
+            margin: 0.8rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* 我们是谁 (about) */
+        .about-grid {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1.4;
+        }
+        .about-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            color: #2C2418;
+            line-height: 1.6;
+        }
+        .stats {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+            background: #FFF9F4;
+            padding: 2rem;
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--sdu-red);
+            font-family: 'Playfair Display', serif;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--sdu-gray);
+            letter-spacing: 0.5px;
+        }
+
+        /* 我们的行动 卡片区 */
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .action-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .action-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .card-content h3 {
+            font-size: 1.5rem;
+            color: var(--sdu-red);
+            margin-bottom: 0.75rem;
+        }
+        .card-content p {
+            color: #4B3E2E;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .tag {
+            display: inline-block;
+            background: #F1E6DC;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--sdu-red-dark);
+        }
+
+        /* 加入我们 双栏布局 */
+        .join-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            background: #FFFBF7;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .join-info {
+            flex: 1;
+        }
+        .join-info h3 {
+            font-size: 1.8rem;
+            color: var(--sdu-dark);
+            margin-bottom: 1rem;
+        }
+        .join-info p {
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .contact-list {
+            margin: 1.5rem 0;
+            list-style: none;
+        }
+        .contact-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-list i {
+            width: 28px;
+            color: var(--sdu-red);
+            font-size: 1.2rem;
+        }
+        .join-form {
+            flex: 1;
+            background: white;
+            padding: 1.8rem;
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1px solid #E2D6CC;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            background: #FEFCFA;
+            transition: 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--sdu-red);
+            box-shadow: 0 0 0 2px rgba(155,42,42,0.1);
+        }
+        .btn-submit {
+            background: var(--sdu-red);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-submit:hover {
+            background: var(--sdu-red-dark);
+        }
+
+        /* 页脚 */
+        footer {
+            background: #2C2418;
+            color: #E7DED4;
+            padding: 2.5rem 0;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .footer-content p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        .footer-social a {
+            color: #E7DED4;
+            margin: 0 0.8rem;
+            font-size: 1.2rem;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .footer-social a:hover {
+            color: var(--sdu-gold);
+            transform: translateY(-2px);
+        }
+
+        /* 滚动偏移修正 (sticky header 遮挡锚点) */
+        section[id] {
+            scroll-margin-top: 90px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .join-wrapper {
+                padding: 1.5rem;
+            }
+            .stats {
+                margin-top: 1rem;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="#">山大·国家记忆寻访团</a>
+                </div>
+                <div class="mobile-menu-icon" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">我们是谁</a></li>
+                    <li><a href="#actions">我们的行动</a></li>
+                    <li><a href="#join">加入我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero 主视觉 -->
+        <div class="hero">
+            <div class="container hero-content">
+                <h1>寻访国家记忆<br>传承红色薪火</h1>
+                <div class="sub">山东大学 · 国家记忆寻访团</div>
+                <p>足迹踏遍齐鲁大地，对话百位抗战老兵，抢救“活的记忆”，让青年成为历史传承的炬火。</p>
+                <div class="btn-group">
+                    <a href="#join" class="btn-primary">加入我们 <i class="fas fa-arrow-right"></i></a>
+                    <a href="#actions" class="btn-outline">了解行动</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 我们是谁 Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">我们是谁</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p><strong>山东大学国家记忆寻访团</strong> 成立于2015年，是由山东大学团委指导、历史文化学院支持的学生志愿公益类社团。我们以“寻访历史见证者，守护民族共同记忆”为宗旨，致力于对抗战老兵、红色遗址、口述史料的抢救性记录与传播。</p>
+                        <p>八年来，社团成员利用寒暑假及课余时间，深入山东、河南、江苏等革命老区，累计寻访老兵<span style="color:#9B2A2A; font-weight:700;"> 300+ </span>位，整理口述史料逾<span style="color:#9B2A2A; font-weight:700;"> 50万字</span>，建立“国家记忆影像库”，并在校内举办多场主题展览与报告会，让尘封的历史在青年心中重新闪光。</p>
+                        <p>我们相信：每一次倾听，都是一次致敬；每一段记录，都是一份传承。寻访团曾获得“山东省优秀社会实践团队”、“山东大学十佳社团”等荣誉称号，并被多家媒体报道。</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">300+</div>
+                            <div class="stat-label">寻访老兵人数</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">地市走访足迹</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50w+</div>
+                            <div class="stat-label">整理口述文字</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">主题展览/宣讲</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 我们的行动 Section -->
+        <section id="actions" style="background-color: #FEF9F4;">
+            <div class="container">
+                <h2 class="section-title">我们的行动</h2>
+                <div class="actions-grid">
+                    <div class="action-card">
+                        <div class="card-img" style="background-image: url('https://picsum.photos/id/104/400/240'); background-size: cover; background-position: 50% 35%;"></div>
+                        <div class="card-content">
+                            <h3>老兵口述 · 抢救记忆</h3>
+                            <p>实地走访抗战老兵，以影像与文字记录他们的烽火岁月。累计收集珍贵影像资料4000余分钟，为历史留存第一手见证。</p>
+                            <span class="tag"><i class="far fa-clock"></i> 持续进行中</span>
+                        </div>
+                    </div>
+                    <div class="action-card">
+                        <div class="card-img" style="background-image: url('https://picsum.photos/id/133/400/240'); background-size: cover; background-position: center;"></div>
+                        <div class="card-content">
+                            <h3>“家国光影” 主题展览</h3>
+                            <p>每年12月在校内举办国家记忆展，展出历史图片、老兵手模、战时实物等，观展人数累计超过8000人，引发强烈共鸣。</p>
+                            <span class="tag"><i class="fas fa-calendar-alt"></i> 年度品牌活动</span>
+                        </div>
+                    </div>
+                    <div class="action-card">
+                        <div class="card-img" style="background-image: url('https://picsum.photos/id/220/400/240'); background-size: cover; background-position: 50% 50%;"></div>
+                        <div class="card-content">
+                            <h3>红色遗址研学 · 青春宣讲</h3>
+                            <p>走访沂蒙、胶东革命旧址，组建宣讲团走进中小学与社区，将历史故事转化为爱国主义教育课程，传承红色基因。</p>
+                            <span class="tag"><i class="fas fa-chalkboard-user"></i> 已宣讲40余场</span>
+                        </div>
+                    </div>
+                    <div class="action-card">
+                        <div class="card-img" style="background-image: url('https://picsum.photos/id/155/400/240'); background-size: cover; background-position: 30% 20%;"></div>
+                        <div class="card-content">
+                            <h3>口述史数据库建设</h3>
+                            <p>与山大图书馆合作建设“国家记忆”特色数字资源库，开放部分史料供学术研究，让历史记忆永久保存。</p>
+                            <span class="tag"><i class="fas fa-database"></i> 数字化工程</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 加入我们 Section -->
+        <section id="join">
+            <div class="container">
+                <h2 class="section-title">加入我们</h2>
+                <div class="join-wrapper">
+                    <div class="join-info">
+                        <h3>和我们一起，成为历史传承者</h3>
+                        <p>无论你来自哪个专业，只要你对历史抱怀敬畏，对寻访工作有热忱，国家记忆寻访团欢迎你的加入！</p>
+                        <p>我们设有调研组、宣传组、秘书处及外联部。你可以参与实地走访、口述史整理、新媒体运营、策展等工作，在行走中感悟历史重量。</p>
+                        <ul class="contact-list">
+                            <li><i class="fas fa-envelope"></i> 官方邮箱：<strong>sdgj_memory@sdu.edu.cn</strong></li>
+                            <li><i class="fab fa-weixin"></i> 微信公众号：<strong>山大国家记忆寻访团</strong></li>
+                            <li><i class="fas fa-map-marker-alt"></i> 山东大学中心校区 · 文史楼团委办公室</li>
+                            <li><i class="fas fa-users"></i> 2025秋季纳新QQ群：<strong>796381204</strong></li>
+                        </ul>
+                        <div style="margin-top: 20px; background:#EDE2D6; padding: 12px 20px; border-radius: 40px; text-align: center;">
+                            <i class="fas fa-quote-left"></i>  “让沉默的记忆开口说话，让青春与历史对话”
+                        </div>
+                    </div>
+                    <div class="join-form">
+                        <h3 style="margin-bottom: 1.2rem; font-size: 1.6rem;">预备成员报名</h3>
+                        <form id="joinForm">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="姓名 *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="电子邮箱 *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="studentId" placeholder="学号/工号">
+                            </div>
+                            <div class="form-group">
+                                <select id="interest">
+                                    <option value="" disabled selected>感兴趣的方向</option>
+                                    <option>实地调研与口述史采集</option>
+                                    <option>新媒体宣传与设计</option>
+                                    <option>档案整理与策展</option>
+                                    <option>外联与行政事务</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea rows="3" id="message" placeholder="简单介绍自己/加入理由（150字以内）"></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit"><i class="fas fa-pen-fancy"></i> 提交报名意向</button>
+                            <p style="font-size: 0.75rem; margin-top: 12px; text-align: center; color: #7F6E5A;">提交后，我们会于3个工作日内邮件联系您</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-social">
+                <a href="#" aria-label="微信公众号"><i class="fab fa-weixin"></i></a>
+                <a href="#" aria-label="微博"><i class="fab fa-weibo"></i></a>
+                <a href="#" aria-label="bilibili"><i class="fab fa-bilibili"></i></a>
+                <a href="#" aria-label="github"><i class="fab fa-github"></i></a>
+            </div>
+            <p>© 2025 山东大学国家记忆寻访团 | 铭记历史 珍爱和平 开创未来</p>
+            <p style="margin-top: 8px;">地址：山东省济南市山大南路27号 山东大学中心校区</p>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileBtn && navLinks) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // 改变图标样式
+                const icon = mobileBtn.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // 点击导航链接后关闭移动菜单
+            const navItems = navLinks.querySelectorAll('a');
+            navItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = mobileBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            });
+        }
+
+        // 平滑滚动并修正偏移（浏览器已支持scroll-behavior，但scroll-margin-top已处理）
+        // 额外确保任何锚点点击偏移完美 (防止header覆盖)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#" || targetId === "") return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const offsetTop = targetElement.offsetTop - 80; // 更精细偏移控制
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // 加入我们表单提交（前端演示效果）
+        const joinForm = document.getElementById('joinForm');
+        if (joinForm) {
+            joinForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name')?.value.trim();
+                const email = document.getElementById('email')?.value.trim();
+                if (!name || !email) {
+                    alert('请填写姓名和邮箱，以便我们联系您～');
+                    return;
+                }
+                // 模拟提交成功提示
+                alert(`感谢 ${name} 同学/老师的申请！\n国家记忆寻访团负责人将尽快通过 ${email} 与您联系，期待与您一起守护历史记忆。`);
+                joinForm.reset();
+                // 可额外将数据发送至后端（演示未接入）
+            });
+        }
+    </script>
+</body>
+</html>
